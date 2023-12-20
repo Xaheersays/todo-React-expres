@@ -1,4 +1,3 @@
-
 const express = require('express')
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
@@ -129,8 +128,24 @@ const deleteAll = async(token)=>{
 
 
 
+app.get('/getAll',validateUserFromToken,async(req,res)=>{
+    const token = req.headers.authorization
+    const todoList = await giveDocfromToken(token);
+    if (!doc){
+        return res.status.json({
+            success:false,
+            message:"could not fetch results"
+        })
+    }
+    return res.status(201).json({
+        success:true,
+        message:"successfully fetched data",
+        data : doc.todos
+    })
+})
 
-
+// app.logout('/logout',(req,res)=>{
+// })
 
 // delete specific
 app.delete('/delete/:id',validateUserFromToken,isValidObjectId,async(req,res)=>{   
@@ -305,6 +320,6 @@ app.put('/addTodo', validateUserFromToken,async (req, res) => {
     }
 });
 
-app.listen(3000)
+// app.listen(3000)
 
 
