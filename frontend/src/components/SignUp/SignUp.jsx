@@ -11,12 +11,12 @@ function SignUp() {
           h-[400px] md:h-2/5  border md:w-[500px]
          bg-slate-600 bg-opacity-50 backdrop-filter backdrop-blur-md p-5 rounded-md'>
             <div className='flex flex-col  text-violet-600 gap-12 md:gap-7'>
-                <Header></Header>
+                <Header title='Signup'/>
                 <div>
                   <Input placeholder='username' imge = {upg}/>
                   <Input placeholder='password' imge = {ppg}/>
                 </div>
-                <Button/>
+                <Button title='Signup'/>
             </div>
         </div>
     </div>
