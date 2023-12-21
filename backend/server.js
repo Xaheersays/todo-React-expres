@@ -7,6 +7,13 @@ app.use(express.json())
 mongoose.connect('mongodb+srv://shzaheer514:zaheer514@cluster0.jgq64hk.mongodb.net/todoDB')
 const ObjectId = mongoose.Types.ObjectId;
 
+const cors = require('cors')
+app.use(cors(
+    {
+        origin : "http://localhost:5173"
+    }
+))
+
 const Data = mongoose.model('users',{
     name:String,
     username:String,
@@ -130,7 +137,7 @@ const deleteAll = async(token)=>{
 
 app.get('/getAll',validateUserFromToken,async(req,res)=>{
     const token = req.headers.authorization
-    const todoList = await giveDocfromToken(token);
+    const doc = await giveDocfromToken(token);
     if (!doc){
         return res.status.json({
             success:false,
@@ -320,6 +327,6 @@ app.put('/addTodo', validateUserFromToken,async (req, res) => {
     }
 });
 
-// app.listen(3000)
+app.listen(3000)
 
 
