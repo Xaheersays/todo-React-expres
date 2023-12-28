@@ -9,7 +9,7 @@ function DoneOrNot() {
     }
   return (
     <div>
-        <ImageButton  handleDone={handleDone} source={done?like:dislike} content='Done'/>
+        <ImageButton done={done} handleDone={handleDone} source={done?like:dislike} content='Done'/>
     </div>
   )
 }

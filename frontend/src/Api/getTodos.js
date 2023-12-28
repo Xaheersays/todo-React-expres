@@ -10,10 +10,10 @@ export const getTodos =async ()=>{
         headers:headers
     }
     const resp =await fetch(url,reqOptions)
-    console.log(resp)
+    // console.log(resp)
     if (!resp.ok){
         return []
     }
     const data = await resp.json()
-    return data;
+    return data.data;
 }

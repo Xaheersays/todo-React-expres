@@ -296,7 +296,7 @@ app.post('/signin',async (req,res)=>{
 })
 
 // create new todo
-app.put('/addTodo', validateUserFromToken,async (req, res) => {
+app.post('/addTodo', validateUserFromToken,async (req, res) => {
     const { task, taskCompleted } = req.body;
     const token = req.headers.authorization;
     console.log(task,taskCompleted,token)
@@ -318,6 +318,7 @@ app.put('/addTodo', validateUserFromToken,async (req, res) => {
         return res.status(200).json({
             success: true,
             message: 'Todo task added to list',
+            // id:
         });
     } else {
         return res.status(500).json({

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 function ImageButton(props) {
-    const {source,content,handleDone} = props
+    const {source,content,handleDone,done} = props
   const [isHovered, setHovered] = useState(false);
 
   return (
