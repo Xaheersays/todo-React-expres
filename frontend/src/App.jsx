@@ -5,7 +5,6 @@ import ErrorPopup from './components/ErrorPopup/ErrorPopup'
 import Header from './components/Header/Header.jsx'
 import Register from './components/Register/Register.jsx'
 import Todo from './components/Todos/Todo.jsx'
-
 function App() {
 
   
@@ -13,11 +12,15 @@ function App() {
     
     <>
 
-    <div className=' border h-auto w-screen pb-12'>
-      <div className=' px-12 flex flex-col gap-7 justify-center items-center'>
+    <div className='  h-auto w-screen pb-12'>
+      
+      <div className='text-white px-12 flex flex-col gap-7 justify-center items-center'>
         <Header></Header>
         <Todo/>
       </div>
+
+
+      
     </div>
     </>
   )

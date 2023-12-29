@@ -3,7 +3,9 @@ import TakeInput from './TakeInput';
 import Task from './Task';
 import { getTodos } from '../../Api/getTodos';
 import { TodoContextProvider } from '../../Context/TodoContext';
-import { addTodoToDB,updateTodoDb,deleteTodoFromDb } from '../../Api/index'
+import { addTodoToDB,updateTodoDb,deleteTodoFromDb ,deleteAllTodosFromDb} from '../../Api/index'
+import Button from '../Button/Button'
+
 
 
 
@@ -49,6 +51,11 @@ function Todo() {
     updateTodoDb(obj)
   }
 
+  const handleClick = async()=>{
+    deleteAllTodosFromDb()
+    setTodoList([])
+}
+
 
   return (
     <>
@@ -60,6 +67,7 @@ function Todo() {
             ))}
           {/* <ImageButton/> */}
         </div>
+        <Button click = {handleClick} />
     </TodoContextProvider>
     </>
 
