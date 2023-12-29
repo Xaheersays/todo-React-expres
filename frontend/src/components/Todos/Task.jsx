@@ -15,10 +15,8 @@ function Task(props) {
 
   const editText = useRef(null)
   const saveTODbClick = ()=>{
-    console.log('saving')
     const task = editText.current
     const obj = {_id:id,task,taskCompleted:false}
-    console.log(obj)
     updateTodo(obj)
 
   }
@@ -31,7 +29,6 @@ function Task(props) {
   const handleChangeContent = (e)=>{
     console.log('imma ther')
     editText.current = e.target.value
-    console.log(editText.current)
   }
 
   return (
