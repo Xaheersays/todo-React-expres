@@ -5,8 +5,7 @@ function TakeInput() {
   const textRef = useRef(null)
   const {addTodo} = useTodo();
   const handleAddTask = ()=>{
-    const text = textRef.current.value
-    // console.log('ref hook',text)
+    const text = textRef.current.value.trim()
     addTodo(text)
   }
 

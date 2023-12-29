@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import ImageButton from './ImageTooltip'
 import like from '../../assets/like.png'
 import dislike from '../../assets/dislike.png'
-function DoneOrNot() {
-    const [done,setDone] = useState(true)
+function DoneOrNot({done,setDone}) {
+    // const [] = useState(true)
+    
     const  handleDone = ()=>{
+        console.log('inside setDone')
         setDone(!done)
     }
   return (

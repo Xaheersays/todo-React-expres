@@ -33,6 +33,8 @@ const isValidObjectId = (req,res,next) => {
         })
     }
     next()
+    console.log('isValidObjectId Done')
+
     return
 }
 
@@ -52,7 +54,7 @@ const validateUserFromToken = (req,res,next)=>{
     // const { task, taskCompleted } = req.body;
     const token = req.headers.authorization;
     // console.log(task,taskCompleted,token)
-    // res.send('ok bhai yha tk hu')
+    console.log('ok bhai yha tk hu')
     if (!token) {
         return res.status(403).json({
             success: false,
@@ -61,6 +63,7 @@ const validateUserFromToken = (req,res,next)=>{
         
     }
     next()
+    console.log('validateUserFromToken Done')
 }
 
 
@@ -157,7 +160,7 @@ app.get('/getAll',validateUserFromToken,async(req,res)=>{
 // delete specific
 app.delete('/delete/:id',validateUserFromToken,isValidObjectId,async(req,res)=>{   
     const todoId = new ObjectId(req.params.id);
-    // console.log(todoId)
+    console.log(todoId)
     const token = req.headers.authorization
     console.log(todoId,token)
     if (!todoId){

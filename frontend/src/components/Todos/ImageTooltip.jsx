@@ -1,19 +1,36 @@
 import React, { useState } from 'react';
-
+import { useTodo } from '../../Context/TodoContext';
 function ImageButton(props) {
-    const {source,content,handleDone,done} = props
+  const {source,content,id,handleClick} = props
+
+  
   const [isHovered, setHovered] = useState(false);
+
+
+  
+
+  // const handleClick =()=>{  
+  //   // if (content==='save this information'){
+  //   //   updateTodo({id,}) 
+  //   // }
+  //   // else if(content==='Done'){
+  //   //   console.log('anna maaf kra')
+  //   //   handleDone()
+  //   // }
+  //   // else{
+
+  //   // }
+  // }
 
   return (
     <div className="relative inline-block" onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
       <img
         src={source}
-        alt="Image Button"
-        onClick={handleDone}
-        className=" h-9  object-cover rounded-tr-md rounded-br-md  active:scale-95 text-white cursor-pointer  rounded focus:outline-none focus:shadow-outline"
+        onClick={handleClick}
+        className=" h-9  object-cover rounded-tr-md rounded-br-md  active:scale-95 text-white cursor-pointer border rounded focus:outline-none focus:shadow-outline"
       />
       {(isHovered && content!=='Done') &&  (
-        <span className="tooltip-text bg-black  text-center p-2  absolute bottom-full left-1/2 transform -translate-x-1/2 opacity-100 transition-opacity duration-100
+        <span className="tooltip-text bg-black  text-center p-2  absolute bottom-full left-1/2 transform -translate-x-1/2 opacity-100 transition-opacity duration-100 rounded-md 
         ">
           {content}
         </span>

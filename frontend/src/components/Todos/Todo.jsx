@@ -4,8 +4,12 @@ import Task from './Task';
 import { getTodos } from '../../Api/getTodos';
 import { TodoContextProvider } from '../../Context/TodoContext';
 import { addTodoToDB,updateTodoDb,deleteTodoFromDb } from '../../Api/index'
+
+
+
 function Todo() {
     const [todoList,setTodoList] = useState([])
+
     
     useEffect(()=>{
 
@@ -21,10 +25,6 @@ function Todo() {
       fetchData()
     },[])
 
-    // useEffect(() => {
-    //   // localStorage.setItem("todos", JSON.stringify(todos))
-      
-    // }, [todoList])
 
     const addTodo =async (task) =>{
         const todoObj = {
@@ -40,8 +40,9 @@ function Todo() {
       updateTodoDb(obj)  
     }
 
-  const deleteTodo = (id)=>{
-    deleteTodoFromDb(id)
+  const deleteTodo = async(id)=>{
+    await deleteTodoFromDb(id)
+    setTodoList(await getTodos())
   }
 
   const toggleComplete = (obj)=>{
@@ -52,15 +53,13 @@ function Todo() {
   return (
     <>
     <TodoContextProvider value={{todoList,addTodo,updateTodo,deleteTodo,toggleComplete}}>
-
-      <div className='md:w-9/12 bg-slate-600 bg-opacity-50 backdrop-filter backdrop-blur-md rounded-md md:mx-w-9/12 '>
-        <TakeInput />
-        { todoList.map((obj) => (
-          <Task key={obj._id} check={obj.completed} task={obj.task} />
-          ))}
-        {/* <ImageButton/> */}
-      </div>
-
+        <div className='md:w-9/12 bg-slate-600 bg-opacity-50 backdrop-filter backdrop-blur-md rounded-md md:mx-w-9/12 '>
+          <TakeInput />
+          { todoList.map((obj) => (
+            <Task key={obj._id} id = {obj._id} check={obj.completed} task={obj.task} />
+            ))}
+          {/* <ImageButton/> */}
+        </div>
     </TodoContextProvider>
     </>
 

@@ -5,12 +5,14 @@ import ErrorPopup from './components/ErrorPopup/ErrorPopup'
 import Header from './components/Header/Header.jsx'
 import Register from './components/Register/Register.jsx'
 import Todo from './components/Todos/Todo.jsx'
+
 function App() {
-  const [count, setCount] = useState(0)
-  'justify-center items-center'
+
+  
   return (
     
     <>
+
     <div className=' border h-auto w-screen pb-12'>
       <div className=' px-12 flex flex-col gap-7 justify-center items-center'>
         <Header></Header>
