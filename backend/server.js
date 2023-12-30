@@ -1,9 +1,12 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
+const bodyParser = require('body-parser')
 const app = express()
 const jwtPassword = 'djafd343m4m'
 app.use(express.json())
+app.use(bodyParser.json());
+
 mongoose.connect('mongodb+srv://shzaheer514:zaheer514@cluster0.jgq64hk.mongodb.net/todoDB')
 const ObjectId = mongoose.Types.ObjectId;
 
@@ -54,7 +57,7 @@ const validateUserFromToken = (req,res,next)=>{
     // const { task, taskCompleted } = req.body;
     const token = req.headers.authorization;
     // console.log(task,taskCompleted,token)
-    console.log('ok bhai yha tk hu')
+    // console.log('ok bhai yha tk hu')
     if (!token) {
         return res.status(403).json({
             success: false,
@@ -254,11 +257,27 @@ app.put('/update/:id',validateUserFromToken,isValidObjectId,async(req,res)=>{
 
 })
 
+app.get('/validateToken',validateUserFromToken,(req,res)=>{
+    const token = req.headers.authorization
+    if (!verifyToken(token)){
+        return res.status(403).json({
+            success:false,
+            message:'not a valid token anymore'
+        })
+    }
+    return res.status(200).json({
+        success:true,
+        message:"token verified successfully"
+    })
+
+})
+
 
 
 // regisernewUsr
 app.post('/register',checkUserExists,(req,res)=>{
     const {name,username,password} = req.body
+    console.log(name,username,password)
     const data = new Data({
         name:name,username:username,password:password,todos:[]
     })
