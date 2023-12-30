@@ -10,18 +10,21 @@ import { DisplayContextProvider } from './Context/display.js';
 import  {SignInContextProvider} from './Context/signInContext.js'
 
 function App() {
-  const [isValidToken, setIsValidToken] = useState(false);
+  const [isValidToken, setIsValidToken] = useState(true);
   const [showSignIn,setShowSignIn] = useState(false);
-
+  const [showTodos,setShowTodos]  = useState(false)
   useEffect(() => {
     const checkTokenValidity = async () => {
       const storedToken = localStorage.getItem('token');
       if (storedToken) {
         const result = await validateTokenFromServer(storedToken);
         if (result.success) {
-          setIsValidToken(true);
+          setIsValidToken(false);
+          setShowSignIn(false)
+          setShowTodos(true)
         } else {
           setIsValidToken(false);
+          setShowTodos(false)
         }
       }
       
@@ -37,9 +40,8 @@ function App() {
         <div className='h-auto w-screen pb-12'>
           <div className='text-white px-12 flex flex-col gap-7 justify-center items-center'>
             <Header />
-            {!showSignIn && !isValidToken && <Register />}
-            {isValidToken && <Todo />}
-            {/* <ErrorPopup/> */}
+            {(isValidToken) && <Register />}
+            {showTodos && <Todo />}
            {showSignIn && <SignUp/>}
           </div>
         </div>

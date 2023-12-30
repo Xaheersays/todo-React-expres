@@ -26,10 +26,14 @@ function Header() {
     setIsValidToken(false)
     setShowSignIn(true)
   }
+  const handleRegitration = ()=>{
+    setIsValidToken(true) 
+    setShowSignIn(false)
+  }
 
 
   return (
-    <div className='text-white  box-border mt-8  md:w-9/12'>
+    <div className='text-white  box-border mt-10  md:w-9/12'>
       <div className='w-full'>
         <div className=' flex justify-between  py-4 rounded-lg px-4 items-center shadow-lg  min-w-[100px] max-w-6xl
         bg-slate-600 bg-opacity-50 backdrop-filter backdrop-blur-md p-5 
@@ -41,16 +45,21 @@ function Header() {
             )
           }
           </div>
-          <div className='bg-orange-500 p-3 hover:bg-orange-700 cursor-pointer w-20 text-center font-bold text-md ml-8 md:w-44 shadow-md
+            { !showSignIn && <div className='bg-orange-500 p-3 hover:bg-orange-700 cursor-pointer w-20 text-center font-bold text-md ml-8 md:w-44 shadow-md
+                      rounded-tr-md rounded-br-md  active:scale-95 text-white   rounded focus:outline-none focus:shadow-outline
+                      '
+                      onClick={handleSignin}
+                      >
+                        signin
+            </div>}
+          {showSignIn && <div  className='bg-orange-500 p-3 hover:bg-orange-700 cursor-pointer w-20 text-center font-bold text-md ml-8 md:w-44 shadow-md
           rounded-tr-md rounded-br-md  active:scale-95 text-white   rounded focus:outline-none focus:shadow-outline
           '
-          onClick={handleSignin}
-          >
-            signin
-          </div>
+          onClick={handleRegitration}
+          > Register</div>}
         </div>
       </div>
-      {/* <button>sjdashdsh</button> */}
+
     </div>
     
   );
