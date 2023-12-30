@@ -6,4 +6,5 @@ const DisplayContext = createContext({
 })
 
 export const useDisplayContext = () => useContext(DisplayContext)
+
 export const DisplayContextProvider = DisplayContext.Provider

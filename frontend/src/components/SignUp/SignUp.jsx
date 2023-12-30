@@ -16,7 +16,7 @@ function SignUp() {
                   <Input placeholder='username' imge = {upg}/>
                   <Input placeholder='password' imge = {ppg}/>
                 </div>
-                <Button title='Signup'/>
+                <Button title='Login'/>
             </div>
         </div>
     </div>

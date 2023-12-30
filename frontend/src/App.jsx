@@ -7,32 +7,25 @@ import Register from './components/Register/Register.jsx';
 import Todo from './components/Todos/Todo.jsx';
 import { validateTokenFromServer } from './Api/index.js';
 import { DisplayContextProvider } from './Context/display.js';
+import  {SignInContextProvider} from './Context/signInContext.js'
 
 function App() {
   const [isValidToken, setIsValidToken] = useState(false);
+  const [showSignIn,setShowSignIn] = useState(false);
 
   useEffect(() => {
     const checkTokenValidity = async () => {
       const storedToken = localStorage.getItem('token');
-      console.log('Stored Token:', storedToken);
-  
       if (storedToken) {
         const result = await validateTokenFromServer(storedToken);
-        console.log('Validation Result:', result);
-  
         if (result.success) {
-          console.log('Token is valid');
           setIsValidToken(true);
         } else {
-          console.log('Token is not valid');
           setIsValidToken(false);
         }
       }
-      else{
-        console.log('neg shared token')
-      }
+      
     };
-  
     checkTokenValidity();
   }, []);
   
@@ -40,15 +33,17 @@ function App() {
   return (
     <>
     <DisplayContextProvider value={{isValidToken,setIsValidToken}}>
-      <div className='h-auto w-screen pb-12'>
-        <div className='text-white px-12 flex flex-col gap-7 justify-center items-center'>
-          <Header />
-          {!isValidToken && <Register />}
-          {isValidToken && <Todo />}
-          {/* <ErrorPopup/> */}
-          {/* <SignUp/> */}
+      <SignInContextProvider value={{showSignIn,setShowSignIn}}>
+        <div className='h-auto w-screen pb-12'>
+          <div className='text-white px-12 flex flex-col gap-7 justify-center items-center'>
+            <Header />
+            {!showSignIn && !isValidToken && <Register />}
+            {isValidToken && <Todo />}
+            {/* <ErrorPopup/> */}
+           {showSignIn && <SignUp/>}
+          </div>
         </div>
-      </div>
+        </SignInContextProvider>
       </DisplayContextProvider>
     </>
   );
