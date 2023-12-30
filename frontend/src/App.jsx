@@ -6,6 +6,7 @@ import Header from './components/Header/Header.jsx';
 import Register from './components/Register/Register.jsx';
 import Todo from './components/Todos/Todo.jsx';
 import { validateTokenFromServer } from './Api/index.js';
+import { DisplayContextProvider } from './Context/display.js';
 
 function App() {
   const [isValidToken, setIsValidToken] = useState(false);
@@ -38,6 +39,7 @@ function App() {
 
   return (
     <>
+    <DisplayContextProvider value={{isValidToken,setIsValidToken}}>
       <div className='h-auto w-screen pb-12'>
         <div className='text-white px-12 flex flex-col gap-7 justify-center items-center'>
           <Header />
@@ -47,6 +49,7 @@ function App() {
           {/* <SignUp/> */}
         </div>
       </div>
+      </DisplayContextProvider>
     </>
   );
 }

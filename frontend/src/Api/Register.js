@@ -10,9 +10,10 @@ export const registerNewUser = async(obj)=>{
     });
     const data = await resp.json()
     if (!data.success){
-        return 
+        return false
     }
     const token = data.token
-    console.log(token)
+    // console.log(token)
     localStorage.setItem('token',token)
+    return true
 }

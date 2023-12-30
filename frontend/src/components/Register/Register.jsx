@@ -3,6 +3,7 @@ import Header from '../SignUp/Header'
 import Body from './Body'
 import Button from './Button'
 import { InputContextProvider } from '../../Context/inputContext'
+
 function Register() {
   const nameRef = useRef(null)
   const unameRef = useRef(null)
