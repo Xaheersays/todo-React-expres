@@ -32,17 +32,17 @@ function App() {
       
       if (storedToken) {
         const result = await validateTokenFromServer(storedToken);
-        setLoading(true)
+        // setLoading(true)
         if (result.success) {
           setshowRegister(false);
           setShowSignIn(false)
           setShowTodos(true)
           setHasToken(true);
-          setLoading(false)
+          // setLoading(false)
 
         } else {
           setshowRegister(false);
-          setShowTodos(false)
+          // setShowTodos(false)
           
         }
       }
