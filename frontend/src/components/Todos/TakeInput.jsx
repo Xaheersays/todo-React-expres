@@ -6,6 +6,7 @@ function TakeInput() {
   const {addTodo} = useTodo();
   const handleAddTask = ()=>{
     const text = textRef.current.value.trim()
+    if (text.length===0 || text==='')return 
     addTodo(text)
     textRef.current.value=""
   }
