@@ -1,4 +1,6 @@
 export const  deleteAllTodosFromDb = ()=>{
+  console.log('deleteAllTodosFromDb')
+
     const url = `http://localhost:3000/deleteAll`
     fetch(url,{
         method: 'DELETE',

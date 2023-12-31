@@ -1,4 +1,6 @@
 export const getQuote = async () => {
+  console.log('getQuote')
+
     const url = 'https://type.fit/api/quotes';
   
     try {

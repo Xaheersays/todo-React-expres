@@ -1,4 +1,6 @@
 export const deleteTodoFromDb =async(id)=>{
+  console.log('deleteTodoFromDb')
+
     const url =`http://localhost:3000/delete/${id}`
     console.log(url)
     await fetch(url,{

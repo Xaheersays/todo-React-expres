@@ -19,15 +19,15 @@ function Header() {
 
   const randomValue = () => Math.floor(Math.random() * 16);
 
-  const {isValidToken,setIsValidToken} = useDisplayContext()
+  const {showRegister,setshowRegister} = useDisplayContext()
   const {showSignIn,setShowSignIn} = useSignInContext()
   
   const handleSignin = ()=>{  
-    setIsValidToken(false)
+    setshowRegister(false)
     setShowSignIn(true)
   }
   const handleRegitration = ()=>{
-    setIsValidToken(true) 
+    setshowRegister(true) 
     setShowSignIn(false)
   }
 

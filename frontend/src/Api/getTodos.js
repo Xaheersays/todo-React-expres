@@ -1,4 +1,5 @@
 export const getTodos =async ()=>{
+  console.log('getTodos')
     
     const url = 'http://localhost:3000/getAll';
     const headers = new Headers({

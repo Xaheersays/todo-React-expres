@@ -145,7 +145,7 @@ app.get('/getAll',validateUserFromToken,async(req,res)=>{
     const token = req.headers.authorization
     const doc = await giveDocfromToken(token);
     if (!doc){
-        return res.status.json({
+        return res.status(403).json({
             success:false,
             message:"could not fetch results"
         })
