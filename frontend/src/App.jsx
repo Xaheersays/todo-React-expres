@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect ,useRef } from 'react';
 import './App.css';
 import SignUp from './components/SignUp/SignUp';
 import ErrorPopup from './components/ErrorPopup/ErrorPopup';
@@ -8,8 +8,14 @@ import Todo from './components/Todos/Todo.jsx';
 import { validateTokenFromServer } from './Api/index.js';
 import { DisplayContextProvider } from './Context/display.js';
 import  {SignInContextProvider} from './Context/signInContext.js'
+import { InputContextProvider } from './Context/inputContext.js';
 
 function App() {
+
+  const nameRef = useRef(null)
+  const unameRef = useRef(null)
+  const passRef = useRef(null)
+
 
   const [showRegister, setshowRegister] = useState(true);
   const [showSignIn,setShowSignIn] = useState(false);
@@ -41,16 +47,18 @@ function App() {
     <>
     <DisplayContextProvider value={{showRegister,setshowRegister,hasToken,setHasToken,showTodos,setShowTodos}}>
       <SignInContextProvider value={{showSignIn,setShowSignIn}}>
-        <div className='h-auto w-screen pb-12'>
-          <div className='text-white px-12 flex flex-col gap-7 justify-center items-center'>
-            <Header />
-            {(!hasToken && showRegister) && <Register />}
-            {(hasToken && showTodos) && <Todo />}
-           {(!hasToken && showSignIn) && <SignUp/>}
+        <InputContextProvider value={{nameRef,unameRef,passRef}}>
+          <div className='h-auto w-screen pb-12'>
+            <div className='text-white px-12 flex flex-col gap-7 justify-center items-center'>
+              <Header />
+              {(!hasToken && showRegister) && <Register />}
+              {(hasToken && showTodos) && <Todo />}
+            {(!hasToken && showSignIn) && <SignUp/>}
+            </div>
           </div>
-        </div>
-        </SignInContextProvider>
-      </DisplayContextProvider>
+        </InputContextProvider>
+      </SignInContextProvider>
+    </DisplayContextProvider>
     </>
   );
 }

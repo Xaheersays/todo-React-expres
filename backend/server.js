@@ -302,6 +302,7 @@ app.post('/register',checkUserExists,(req,res)=>{
 // authorization sending back token it to user
 app.post('/signin',async (req,res)=>{
     const {username,password} = req.body
+    console.log(username,password,req.body)
     if (!(await userExists(username,password))){
         res.status(403).json({
             success:false,
@@ -311,6 +312,7 @@ app.post('/signin',async (req,res)=>{
     }
     res.status(201).json({
         success:true,
+        message:'login successfull',
         token : getToken(username,password)
     })
     return 

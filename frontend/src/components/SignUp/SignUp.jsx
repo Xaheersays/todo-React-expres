@@ -4,7 +4,9 @@ import upg from '../../assets/profile.png'
 import ppg from '../../assets/padlock.png'
 import Button from './Button.jsx'
 import Header  from './Header.jsx'
+import {useInputContext} from '../../Context/inputContext.js'
 function SignUp() {
+  const {unameRef,passRef} = useInputContext()
   return (
     <div>
         <div className='flex flex-col justify-between
@@ -13,8 +15,8 @@ function SignUp() {
             <div className='flex flex-col  text-violet-600 gap-12 md:gap-7'>
                 <Header title='Signup'/>
                 <div>
-                  <Input placeholder='username' imge = {upg}/>
-                  <Input placeholder='password' imge = {ppg}/>
+                  <Input refr={unameRef} placeholder='username' imge = {upg}/>
+                  <Input refr={passRef} placeholder='password' imge = {ppg}/>
                 </div>
                 <Button title='Login'/>
             </div>

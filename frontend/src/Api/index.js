@@ -6,4 +6,5 @@ import { deleteTodoFromDb } from "./deleteTodo";
 import {deleteAllTodosFromDb} from './deleteAllTodosFromDb'
 import {registerNewUser} from './Register.js'
 import {validateTokenFromServer} from './validateTokenFromServer.js'
-export { addTodoToDB,getQuote,getTodos ,updateTodoDb,deleteTodoFromDb,deleteAllTodosFromDb,registerNewUser,validateTokenFromServer} 
+import { LoginToDb } from "./Login.js";
+export { addTodoToDB,getQuote,getTodos ,updateTodoDb,deleteTodoFromDb,deleteAllTodosFromDb,registerNewUser,validateTokenFromServer,LoginToDb} 
