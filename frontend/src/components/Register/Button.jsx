@@ -5,14 +5,17 @@ import { useDisplayContext } from '../../Context/display';
 
 function Button(props) {
   const { title } = props;
+
   const { nameRef, unameRef, passRef } = useInputContext();
-  const {setHasToken,setshowRegister,setShowTodos} = useDisplayContext()
+
+  const {setHasToken,setshowRegister,setShowTodos,setLoading} = useDisplayContext()
+  
   const handleClick =async () => {
-    console.log('i ma registring')
+    
     const name = nameRef.current;
     const uname = unameRef.current;
     const password = passRef.current;
-
+    setLoading(true)
     if (name === '' || uname === '' || password === '') return;
 
     const result = await registerNewUser({ name, username: uname, password });
@@ -21,10 +24,12 @@ function Button(props) {
       setshowRegister(false)
       setHasToken(true);
       setShowTodos(true)
+      setLoading(false)
     }
     else{
       setshowRegister(true)
       setHasToken(false);
+      setLoading(false)
     }
   };
 

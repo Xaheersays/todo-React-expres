@@ -9,6 +9,9 @@ import { validateTokenFromServer } from './Api/index.js';
 import { DisplayContextProvider } from './Context/display.js';
 import  {SignInContextProvider} from './Context/signInContext.js'
 import { InputContextProvider } from './Context/inputContext.js';
+import LoadingSpinner from './components/Loader/LoadingSpinner.jsx';
+
+
 
 function App() {
 
@@ -16,6 +19,7 @@ function App() {
   const unameRef = useRef(null)
   const passRef = useRef(null)
 
+  const [loading, setLoading] = useState(false);
 
   const [showRegister, setshowRegister] = useState(true);
   const [showSignIn,setShowSignIn] = useState(false);
@@ -25,16 +29,21 @@ function App() {
   useEffect(() => {
     const checkTokenValidity = async () => {
       const storedToken = localStorage.getItem('token');
+      
       if (storedToken) {
         const result = await validateTokenFromServer(storedToken);
+        setLoading(true)
         if (result.success) {
           setshowRegister(false);
           setShowSignIn(false)
           setShowTodos(true)
           setHasToken(true);
+          setLoading(false)
+
         } else {
           setshowRegister(false);
           setShowTodos(false)
+          
         }
       }
       
@@ -45,7 +54,10 @@ function App() {
 
   return (
     <>
-    <DisplayContextProvider value={{showRegister,setshowRegister,hasToken,setHasToken,showTodos,setShowTodos}}>
+    {loading ? (
+      <LoadingSpinner loading={loading} setLoading={setLoading}/>
+    ) : (
+    <DisplayContextProvider value={{showRegister,setshowRegister,hasToken,setHasToken,showTodos,setShowTodos,setLoading,loading}}>
       <SignInContextProvider value={{showSignIn,setShowSignIn}}>
         <InputContextProvider value={{nameRef,unameRef,passRef}}>
           <div className='h-auto w-screen pb-12'>
@@ -58,7 +70,7 @@ function App() {
           </div>
         </InputContextProvider>
       </SignInContextProvider>
-    </DisplayContextProvider>
+    </DisplayContextProvider>)}
     </>
   );
 }

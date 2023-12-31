@@ -6,7 +6,9 @@ const DisplayContext = createContext({
     hasToken :false,
     setHasToken:()=>{},
     showRegister : false,
-    setshowRegister : ()=>{}
+    setshowRegister : ()=>{},
+    loading:false,
+    setLoading :()=>{}
 })
 
 export const useDisplayContext = () => useContext(DisplayContext)
