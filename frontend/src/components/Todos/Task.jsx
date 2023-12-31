@@ -18,6 +18,9 @@ function Task(props) {
     const task = editText.current
     const obj = {_id:id,task,taskCompleted:false}
     updateTodo(obj)
+    if (task.length===0 || task ===''){
+      deleteFromDbClick(id)
+    }
 
   }
 
