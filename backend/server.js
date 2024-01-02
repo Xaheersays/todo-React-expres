@@ -6,8 +6,8 @@ const app = express()
 const jwtPassword = 'djafd343m4m'
 app.use(express.json())
 app.use(bodyParser.json());
-
-mongoose.connect('mongodb+srv://shzaheer514:zaheer514@cluster0.jgq64hk.mongodb.net/todoDB')
+// import mongodburl from 
+mongoose.connect(process.env.mongodburl)
 const ObjectId = mongoose.Types.ObjectId;
 
 const cors = require('cors')
